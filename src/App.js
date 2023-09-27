@@ -1,30 +1,23 @@
 import './App.css';
-//import { useEffect } from 'react';
-//import { db } from './firebase';
-//import { ref, onValue } from 'firebase/database'
-import { useDispatch, useSelector } from 'react-redux';
+
+import { Routes, Route } from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
 
 function App() {
 
-  const store = useSelector(store => store)
-  const dispatch = useDispatch();
-
-  console.log(store)
-
-  
-  // useEffect(() => {
-  //   const starCountRef = ref(db);
-  //   onValue(starCountRef, (snapshot) => {
-  //     const data = snapshot.val();
-  //     console.log(data)
-  //   });
-  // }, []);
-
-
   return (
-    <div className="App">
-      <button onClick={() => dispatch({type: 'LOAD_DATA'})} > click me </button>
-    </div>
+
+    <Routes>
+
+      <Route exact path='/' Component={HomePage} />
+      <Route exact path='/login' Component={LoginPage} />
+      <Route exact path='/register' Component={RegisterPage} />
+
+      
+    </Routes>
+
   );
 }
 
