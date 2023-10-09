@@ -1,32 +1,50 @@
 //import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+
 import { useAuth } from '../hooks/use-auth';
-import { removeUser } from '../store/slice/userSlice';
+
+import { Header } from '../components/Header/Header'
+import Table from '../components/Table';
+
+import { Row, Col } from 'antd'
+
 
 function HomePage() {
 
     // const store = useSelector(store => store)
-    const dispatch = useDispatch();
 
-    const { isAuth, email } = useAuth();
+
+    const { isAuth } = useAuth();
 
     // console.log(store)
 
     return isAuth ? (
-        <div>
-            <h1>Welcome</h1>
 
+
+        <div>
+
+            
+
+            <Header />
+
+            
             {/* <div>
                 <button onClick={() => dispatch({ type: 'LOAD_DATA' })} > click me </button>
             </div> */}
 
-            <button
-                onClick={ () => dispatch( removeUser() ) }
-            > Log out from {email} </button>
+
+
+            <Row>
+                <Col  md={{ span: 22, offset: 1 }}>
+                    <Table />
+                </Col>
+            </Row>
+
         </div>
+
     ) : (
         <Navigate to='/login' />
+
     )
 }
 
